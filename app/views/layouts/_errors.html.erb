@@ -1,0 +1,10 @@
+<% if object.errors.any? %>
+<h3>Please fix these errors:</h3>
+<ul>
+  <% object.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<%#Notice I've changed @contact to object so that it has a general name and is a local variable instead of an instance variable. See the edit.html.erb that calls this object%>

@@ -1,0 +1,29 @@
+<% content_for(:title, "Contacts | Wikipages") %>
+<%# This changes the title on the page tab; see application.html.erb for where the edit for the Title is called to reference each html.erb sheet %>
+
+<h1>Contacts</h1>
+
+<ul>
+  <% @contacts.each do |contact| %>
+  <li><a href="/contacts/<%= contact.id %>"><%= contact.name %></a></li>
+  <% end %>
+</ul>
+
+<h2>New contact</h2>
+
+<% if @contact.errors.any? %>
+<h3>Please fix these errors:</h3>
+<ul>
+  <% @contact.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<form action="/contacts/" method="post">
+   <label for="contact_name">Name</label>
+   <input id="contact_name" name="contact[name]" type="text">
+   <label for="contact_email">Email</label>
+   <input id="contact_email" name="contact[email]" type="text">
+ <button>Create Contact</button>
+</form>

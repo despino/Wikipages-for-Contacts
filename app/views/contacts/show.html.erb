@@ -1,0 +1,24 @@
+<% content_for(:title, "Contact | Wikipages") %>
+
+<h1><%= @contact.name %></h1>
+
+<a href="/contacts/<%= @contact.id %>/phones/new">Add phone</a>
+
+<p>
+<h3>Phones:</h3>
+  <% @contact.phones.each do |aPhone| %>
+  <%= aPhone.number %>
+    <form action="/phones/<%= aPhone.id %>" method="post">
+      <input type="hidden" name="_method" value="delete"/>
+      <button data-confirm="You sure?" data-method="delete" rel="nofollow">Delete</button>
+    </form>
+  <% end %>
+</p>
+<p><h3>Email:</h3> <%= @contact.email %><br></p>
+
+<p><a href="/contacts/<%= @contact.id %>/edit">Edit</a></p>
+<p><a href="/contacts/<%= @contact.id %>"
+  data-confirm="You sure?"
+  data-method="delete"
+  rel="nofollow">Delete</a></p>
+<p><a href="/contacts">Return to contact listing</a></p>
